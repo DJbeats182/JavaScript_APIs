@@ -11,6 +11,7 @@ let feedbackEle = document.querySelector("#feedback");
 let searchInput = document.querySelector("#searchWord");
 let searchBtn = document.querySelector("#submitSearch");
 let gifEle = document.querySelector("#imageContainer > img");
+let imageContainer = document.querySelector("#imageContainer");
 
 // Event Handler
 searchBtn.addEventListener("click", (event) => {
@@ -23,11 +24,18 @@ function getGif(searchTerm) {
     .then((body) => {
         // show the gif on the dom
         gifEle.src = body.data.images.original.url;
+        // reset the search input and feedback element 
+        searchInput.value = "";
+        feedbackEle.textContent = "";
+        // display the image container
+        imageContainer.classList.remove("hidden");
     })
     .catch((err) => {
         console.error(err);
         // show the error message on the dom
-        feedbackEle.textContent = error.message;
+        feedbackEle.textContent = err.message;        
+         // hide the image container
+         imageContainer.classList.add("hidden");
     });
 }
 
@@ -40,9 +48,13 @@ function getGif(searchTerm) {
 //         let body = await res.json();
 //         // show the gif on the dom
 //         gifEle.src = body.data.images.original.url;
+//         // display the image container
+//         imageContainer.classList.remove("hidden");
 //     } catch (err) {
 //         console.error(err);
 //         // show the error message on the dom
 //         feedbackEle.textContent = err.message;
+//         // hide the image container
+//         imageContainer.classList.add("hidden");
 //     }
 // }

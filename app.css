@@ -1,0 +1,19 @@
+#imageContainer {
+  max-width: 680px;
+}
+
+#imageContainer > img {
+  width: 100%;
+  height: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
